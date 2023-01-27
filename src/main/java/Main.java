@@ -12,30 +12,39 @@ public class Main {
 
     public void run(Scanner scanner) {
         List<Integer> numbers = new ArrayList<>();
-        boolean condition = true;
         int a;
-        while (condition) {
-            a = scanner.nextInt();
-            if (a > 0) {
-                numbers.add(a);
-            } else {
-                condition = false;
-            }
+        while ((a = scanner.nextInt()) > 0) {
+            numbers.add(a);
         }
-        showReverseList(numbers);
-        showSum(numbers);
-        showMinNumber(numbers);
-        showMax(numbers);
+        if (!numbers.isEmpty()) {
+            showReverseList(numbers);
+            showSum(numbers);
+            showMinNumber(numbers);
+            showMax(numbers);
+        } else {
+            System.out.println("Lista jest pusta");
+        }
     }
 
     private void showMax(List<Integer> numbers) {
-        Collections.sort(numbers);
-        System.out.println("Największa liczba w liście to " + numbers.get(numbers.size() - 1));
+        int largetst = numbers.get(0);
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers.get(i) > largetst) {
+                largetst = numbers.get(i);
+            }
+        }
+        System.out.println("Największa liczba w liście to " + largetst);
     }
 
     private void showMinNumber(List<Integer> numbers) {
-        Collections.sort(numbers);
-        System.out.println("Najmniejsza liczba w liście to " + numbers.get(0));
+        int smallest = numbers.get(0);
+
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers.get(i) < smallest) {
+                smallest = numbers.get(i);
+            }
+        }
+        System.out.println("Najmniejsza liczba w liście to " + smallest);
     }
 
     private void showSum(List<Integer> numbers) {
